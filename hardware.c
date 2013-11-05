@@ -88,12 +88,14 @@ static int load(const char *id,
         goto done;
     }
 
+#ifndef DISABLE_HW_ID_MATCH_CHECK
     /* Check that the id matches */
     if (strcmp(id, hmi->id) != 0) {
         ALOGE("load: id=%s != hmi->id=%s", id, hmi->id);
         status = -EINVAL;
         goto done;
     }
+#endif /* DISABLE_HW_ID_MATCH_CHECK */
 
     hmi->dso = handle;
 
